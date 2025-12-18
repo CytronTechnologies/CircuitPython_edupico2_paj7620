@@ -38,8 +38,6 @@ __repo__ = "https://github.com/noqman/CircuitPython_edupico2_paj7620.git"
 
 from adafruit_bus_device.i2c_device import I2CDevice
 
-
-
 _ADDR = (
     b"\xefAB789BFGHIJLQ^`\x80\x81\x82\x8b\x90\x95\x96\x97\x9a\x9c"
     b"\xa5\xcc\xcd\xce\xcf\xd0\xef\x02\x03\x04%'()>^egijmnrstw\xef"
@@ -51,9 +49,10 @@ _DATA = (
     b"9\x7f\x08\xff=\x96\x97\xcd\x01,\x01\x015\x00\x01\x00\xff\x01"
 )
 
+
 class PAJ7620:
     """Driver class for the PAJ7620 sensor"""
-    
+
     NONE = 0x00
     UP = 0x01
     DOWN = 0x02
@@ -82,10 +81,10 @@ class PAJ7620:
         with self.device as device:
             device.write_then_readinto(b"\x43", self.buf)
         return int.from_bytes(self.buf, "little")
-    
+
     def proximity_raw(self):
-        """ Read raw proximity value from register 0x6C (S_AvgY[8:1])."""
-        
+        """Read raw proximity value from register 0x6C (S_AvgY[8:1])."""
+
         with self.device as device:
             # write register address, then read one byte
             device.write_then_readinto(bytes([0x6C]), self.buf, in_end=1)
@@ -93,12 +92,12 @@ class PAJ7620:
 
     def proximity(self):
         """Convert raw PAJ7620 proximity data into a usable 0–255 range."""
-        
+
         raw_value = self.proximity_raw()
-            
+
         # Map raw_value from 70-255 to 0-255; clamp values below 70 to 0 due to inconsistent output
         if raw_value < 70:
             return 0
-        
+
         mapped_value = (255 * (raw_value - 70)) // 185
         return min(mapped_value, 255)  # Ensure output doesn't exceed 255
