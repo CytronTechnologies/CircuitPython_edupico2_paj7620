@@ -9,7 +9,7 @@ Introduction
     :alt: Discord
 
 
-.. image:: https://github.com/noqman/CircuitPython_edupico2_paj7620/workflows/Build%20CI/badge.svg
+.. image:: https://github.com/CytronTechnologies/CircuitPython_edupico2_paj7620/workflows/Build%20CI/badge.svg
     :target: https://github.com/CytronTechnologies/CircuitPython_edupico2_paj7620/actions
     :alt: Build Status
 
