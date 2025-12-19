@@ -34,7 +34,7 @@ Implementation Notes
 # imports
 
 __version__ = "0.0.0+auto.0"
-__repo__ = "https://github.com/noqman/CircuitPython_edupico2_paj7620.git"
+__repo__ = "https://github.com/CytronTechnologies/CircuitPython_edupico2_paj7620.git"
 
 from adafruit_bus_device.i2c_device import I2CDevice
 
